@@ -1,0 +1,77 @@
+
+Step1)
+Add these in pubspec.yaml - below the packages - same indenting:
+flutter_localizations:
+   sdk: flutter
+
+
+
+Step2)
+enable ‘generate’ after Flutter in ‘pubspec.yaml’:
+# The following section is specific to Flutter packages.
+flutter:
+ generate: true # Add this line
+
+
+
+Step3)
+Create a new file called ‘l10n.yaml’ in Lib folder - contains these
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+nullable-getter: false
+
+
+
+Step4)
+Create a new folder called ‘l10n’ in Lib folder - contains a file for each language
+app_ar.arb
+app_en.arb
+app_fa.arb
+
+Examples...
+a) for English (app_en.arb) => this file contains
+{
+  "main": "main",
+  "summary": "summary",
+  "pending": "pending”
+}
+
+b) for Kurdish (app_fa.arb) => this file contains
+{
+  "main": "سەرەتا",
+  "summary": "پوختە",
+  "pending": "لە چاوەڕوانیە”
+}
+
+c) for Arabic (app_ar.arb) => this file contains
+{
+  "main": "رئيسي",
+  "summary": "ملخص",
+  "pending": "في انتظار
+}
+
+
+
+Step5)
+add these in MyApp MaterialApp
+     		localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+         ],
+         supportedLocales: const [
+            Locale('en', 'EN'),
+            Locale('ar', 'IQ'),
+            Locale('fa', 'IN'),
+         ],
+         locale: const Locale('fa', 'IN'),//default app language
+         
+         
+         
+Step6)
+run “flutter gen-l10n” command in termal to generate the languages files
+         
+         
+
